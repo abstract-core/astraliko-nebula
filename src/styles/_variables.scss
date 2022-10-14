@@ -1,0 +1,28 @@
+// COLORS
+$space: #130a45;
+$yang: #ff3561;
+$star: #fffabf;
+// Bootstrap-based
+$light: #f8f9fa;
+// Bootstrap-based
+$dark: #212529;
+
+$theme-colors: (
+  space: $space,
+  yang: $yang,
+  star: $star,
+  light: $light,
+  dark: $dark,
+);
+
+// LINKS
+$link-color: $star;
+
+// NAVBAR
+//  (LINKS)
+$navbar-light-brand-color: $star;
+$navbar-light-brand-hover-color: $star;
+
+// FONTS
+$font-play: "PlayfairDisplay-Regular";
+$font-mono: "RobotoMono-Regular";
