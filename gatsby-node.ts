@@ -73,16 +73,8 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions }) => {
       text: COLORS.LIGHT,
       links: [
         {
-          title: "Pensées",
-          path: "/pensees",
-        },
-        {
-          title: "Illustrations",
-          path: "/illustrations",
-        },
-        {
-          title: "Vidéos",
-          path: "/videos",
+          title: "Prestations",
+          path: "/prestations",
         },
       ],
     },
@@ -96,16 +88,8 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions }) => {
           path: "/",
         },
         {
-          title: "Pensées",
-          path: "/pensees",
-        },
-        {
-          title: "Illustrations",
-          path: "/illustrations",
-        },
-        {
-          title: "Vidéos",
-          path: "/videos",
+          title: "Prestations",
+          path: "/prestations",
         },
       ],
     },
