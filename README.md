@@ -4,7 +4,7 @@ This project is a contextualized POC for **Gatsby x Notion** integration.
 
 Its two main purposes are :
 
-- Building the new [IMROK.fr](imrok.fr) wesbite,
+- Building the [Astraliko Nebula](nebula.rimarok.com) wesbite,
 - Creating base logic & components for a gatsby-notion module abstration.
 
 ## Getting started
