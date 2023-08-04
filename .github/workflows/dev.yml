@@ -14,13 +14,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Checkout nebula-genesis
+        uses: actions/checkout@v3
+        with:
+          repository: abstract-core/nebula-genesis
+          path: nebula-genesis
+
       - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
           node-version: "18"
           cache: "npm"
 
-      - run: git clone git@github.com:abstract-core/nebula-genesis.git
       - run: cd nebula-genesis
       - run: npm i
       - run: npx tsc
