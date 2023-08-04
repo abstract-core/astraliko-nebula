@@ -26,6 +26,12 @@ jobs:
           node-version: "18"
           cache: "npm"
 
+      - name: Enable Notion data cache
+        id: notion-cache
+        uses: actions/cache@v3
+        with:
+          path: ./cache
+
       - name: Download and cache Notion data
         run: |
           cd ./nebula-genesis
