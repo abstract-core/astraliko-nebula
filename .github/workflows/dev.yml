@@ -27,8 +27,8 @@ jobs:
           cache: "npm"
 
       - name: Download and cache Notion data
-        working-directory: ./nebula-genesis
         run: |
+          cd ./nebula-genesis
           npm i
           npx tsc
           node index.js NOTION_TOKEN=${{ secrets.NOTION_TOKEN }} DATABASE_ID=${{ secrets.DATABASE_ID }} CACHE_PATH=../cache
