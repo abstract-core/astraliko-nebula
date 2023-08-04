@@ -41,6 +41,6 @@ jobs:
             NOTION_TOKEN=${{ secrets.NOTION_TOKEN }} \
             DATABASE_ID=${{ secrets.DATABASE_ID }} \
             CACHE_PATH=../cache \
-            ON_OR_AFTER=2023-06-04
+            ON_OR_AFTER=${{ vars.ON_OR_AFTER }}
 
-      - run: ls
+      - run: ls ./cache
