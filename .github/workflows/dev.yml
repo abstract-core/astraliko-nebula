@@ -27,9 +27,9 @@ jobs:
           cache: "npm"
 
       - name: Enable Notion data cache
-        id: notion-cache
         uses: actions/cache@v3
         with:
+          key: notion-cache
           path: ./cache
 
       - name: Download and cache Notion data
@@ -37,4 +37,7 @@ jobs:
           cd ./nebula-genesis
           npm i
           npx tsc
-          node index.js NOTION_TOKEN=${{ secrets.NOTION_TOKEN }} DATABASE_ID=${{ secrets.DATABASE_ID }} CACHE_PATH=../cache ON_OR_AFTER=$ON_OR_AFTER
+          node index.js \
+            NOTION_TOKEN=${{ secrets.NOTION_TOKEN }} \
+            DATABASE_ID=${{ secrets.DATABASE_ID }} \
+          ls
