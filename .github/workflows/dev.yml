@@ -44,4 +44,4 @@ jobs:
             ON_OR_AFTER=${{ vars.ON_OR_AFTER }}
 
       - name: Build website
-        run: npm run build
+        run: npx gatsby build
