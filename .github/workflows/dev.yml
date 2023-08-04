@@ -43,4 +43,5 @@ jobs:
             CACHE_PATH=../cache \
             ON_OR_AFTER=${{ vars.ON_OR_AFTER }}
 
-      - run: ls ./cache
+      - name: Build website
+        run: npm run build
