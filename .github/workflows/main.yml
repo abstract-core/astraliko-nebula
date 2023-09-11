@@ -32,6 +32,9 @@ jobs:
           key: notion-files-cache
           path: ./static
 
+      - name: Install packages
+        run: npm i
+
       - name: Download and cache Notion data
         run: |
           node node_modules/nebula-genesis/build/index.js \
@@ -41,9 +44,7 @@ jobs:
             ON_OR_AFTER=${{ vars.ON_OR_AFTER }}
 
       - name: Build website
-        run: |
-          npm i
-          npx gatsby build
+        run: npx gatsby build
 
       - name: FTP dev environment
         uses: sebastianpopp/ftp-action@releases/v2
