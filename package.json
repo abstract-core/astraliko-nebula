@@ -1,6 +1,6 @@
 {
   "name": "nebula-genesis",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "private": true,
   "description": "POC site for Nebula Genesis static website product",
   "author": "RIMAROK.com",
@@ -26,10 +26,10 @@
     "bootstrap": "^5.2.3",
     "gatsby": "^5.11.0",
     "gatsby-plugin-sass": "^6.11.0",
+    "nebula-atoms": "^1.2.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.56.2",
-    "statikon": "^0.1.12"
+    "sass": "^1.56.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

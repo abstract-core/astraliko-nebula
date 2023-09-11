@@ -7,9 +7,7 @@ import {
 import path from "path";
 import richTextToString from "./src/helpers/richTextToString";
 import titlePropToString from "./src/helpers/titlePropToString";
-import { DefaultTemplateContext } from "statikon";
-// import datePropToDate from "./src/helpers/datePropToDate";
-import { COLORS } from "./src/enums/colors.enum";
+import { DefaultTemplateContext } from "nebula-atoms";
 import { readFile } from "fs/promises";
 
 export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
@@ -24,6 +22,8 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
 
 export const createPages: GatsbyNode["createPages"] = async ({ actions }) => {
   const { createPage } = actions;
+
+  const TITLE = "Nebula, solution de sites éco-conçus.";
 
   /*
    * 1. PAGE [& CONTENTS] RETRIEVING
@@ -48,13 +48,10 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions }) => {
 
   const sharedProps: Pick<
     DefaultTemplateContext,
-    "bg" | "text" | "navbar" | "contents" | "footer"
+    "bg" | "text" | "navbar" | "footer"
   > = {
-    bg: COLORS.SPACE,
-    text: COLORS.STAR,
     navbar: {
-      bg: COLORS.YANG,
-      text: COLORS.LIGHT,
+      title: "Nebula",
       links: [
         {
           title: "Prestations",
@@ -62,11 +59,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions }) => {
         },
       ],
     },
-    contents: [],
     footer: {
-      bg: COLORS.YANG,
-      text: COLORS.LIGHT,
-      a: COLORS.STAR,
       links: [
         {
           title: "Accueil",
@@ -94,6 +87,8 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions }) => {
       Robots: robots,
     } = page.properties;
 
+    const pageTitle = name.type === "title" && titlePropToString(name);
+
     createPage({
       component: path.resolve("./src/templates/default.template.tsx"),
       path:
@@ -101,53 +96,20 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions }) => {
           ? richTextToString(url.rich_text as TextRichTextItemResponse[])
           : page.id,
       context: {
-        title: name.type === "title" && titlePropToString(name),
+        pageTitle,
         blocks,
         head: {
+          title: `${pageTitle} | ${TITLE}`,
           description:
             description.type === "rich_text" &&
             richTextToString(
               description.rich_text as TextRichTextItemResponse[]
             ),
+          favicon: "/nebula-logo.svg",
           noIndex: robots.type === "select" && robots.select?.name === "Masqué",
         },
         ...sharedProps,
       } as DefaultTemplateContext,
     });
   });
-
-  /* _contents.forEach(({ page: content, blocks }) => {
-    const {
-      Name: name,
-      Url: url,
-      Description: description,
-      Robots: robots,
-      ["Créé le"]: createdAt,
-      ["Publié le"]: publishedAt,
-      ["Édité le"]: editedAt,
-    } = content.properties;
-    createPage({
-      component: path.resolve("./src/templates/default.template.tsx"),
-      path:
-        url.type === "rich_text"
-          ? richTextToString(url.rich_text as TextRichTextItemResponse[])
-          : content.id,
-      context: {
-        title: name.type === "title" && titlePropToString(name),
-        head: {
-          description:
-            description.type === "rich_text" &&
-            richTextToString(
-              description.rich_text as TextRichTextItemResponse[]
-            ),
-          noIndex: robots.type === "select" && robots.select?.name === "Masqué",
-        },
-        createdAt: createdAt.type === "date" && datePropToDate(createdAt),
-        publishedAt: publishedAt.type === "date" && datePropToDate(publishedAt),
-        editedAt: editedAt.type === "date" && datePropToDate(editedAt),
-        blocks,
-        ...sharedProps,
-      } as DefaultTemplateContext,
-    });
-  }); */
 };

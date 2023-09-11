@@ -32,7 +32,6 @@
 @import "../../node_modules/bootstrap/scss/utilities/api";
 
 // 8. Add additional custom code here
-@import "../../node_modules/statikon/src/styles/statikon.scss";
 
 @font-face {
   font-family: $font-play;
@@ -54,6 +53,17 @@
 
 body {
   font-family: $font-mono;
+  background-color: $space;
+  color: $star;
+}
+
+.navbar,
+footer {
+  background-color: $yang;
+  color: $light;
+  a {
+    color: $star;
+  }
 }
 
 h1,
