@@ -4,5 +4,6 @@ public
 src/gatsby-types.d.ts
 .env.*
 src/static/medias/*
-!src/static/medias/placeholder.md
+!src/static/nebula-logo.svg
 cache
+routines.sh

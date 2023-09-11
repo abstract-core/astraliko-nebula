@@ -14,12 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Checkout nebula-genesis
-        uses: actions/checkout@v3
-        with:
-          repository: abstract-core/nebula-genesis
-          path: nebula-genesis
-
       - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
@@ -32,12 +26,15 @@ jobs:
           key: notion-cache
           path: ./cache
 
+      - name: Enable Notion files cache
+        uses: actions/cache@v3
+        with:
+          key: notion-files-cache
+          path: ./static
+
       - name: Download and cache Notion data
         run: |
-          cd ./nebula-genesis
-          npm i
-          npx tsc
-          node index.js \
+          node node_modules/nebula-genesis/build/index.js \
             NOTION_TOKEN=${{ secrets.NOTION_TOKEN }} \
             DATABASE_ID=${{ secrets.DATABASE_ID }} \
             CACHE_PATH=../cache \

@@ -1,6 +1,6 @@
 {
   "name": "nebula-genesis",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "private": true,
   "description": "POC site for Nebula Genesis static website product",
   "author": "RIMAROK.com",
@@ -34,6 +34,7 @@
   "devDependencies": {
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
+    "nebula-genesis": "^1.2.2",
     "typescript": "^4.9.4",
     "webpack-cli": "^4.10.0"
   }
