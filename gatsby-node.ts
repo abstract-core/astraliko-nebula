@@ -57,6 +57,10 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions }) => {
           title: "Prestations",
           path: "/prestations",
         },
+        {
+          title: "La solution",
+          path: "/la-solution",
+        },
       ],
     },
     footer: {
@@ -68,6 +72,10 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions }) => {
         {
           title: "Prestations",
           path: "/prestations",
+        },
+        {
+          title: "La solution",
+          path: "/la-solution",
         },
       ],
       contact: true,
@@ -88,13 +96,14 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions }) => {
     } = page.properties;
 
     const pageTitle = name.type === "title" && titlePropToString(name);
+    const _url =
+      url.type === "rich_text"
+        ? richTextToString(url.rich_text as TextRichTextItemResponse[])
+        : page.id;
 
     createPage({
       component: path.resolve("./src/templates/default.template.tsx"),
-      path:
-        url.type === "rich_text"
-          ? richTextToString(url.rich_text as TextRichTextItemResponse[])
-          : page.id,
+      path: _url,
       context: {
         pageTitle,
         blocks,
@@ -109,6 +118,11 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions }) => {
           noIndex: robots.type === "select" && robots.select?.name === "Masqué",
         },
         ...sharedProps,
+        ...(["/contact", "/mentions-legales"].includes(_url)
+          ? {
+              scripts: ["/contact.js"],
+            }
+          : {}),
       } as DefaultTemplateContext,
     });
   });
